@@ -25,6 +25,18 @@ export default function AllView({ data, setLabelMode }: AllViewProps) {
             </AllViewHeader>
             <hr />
             <div className="stack">
+                <BaseNode
+                    parents={[]}
+                    node={new BasicVirtualNode(data, {
+                        childrenRefs: [],
+                        name: "Merged",
+                        time: data.threads.map(t => t.time).reduce((acc, element) => acc + element),
+                        times: [],
+                        id: 99999,
+                        children: data.threads.map(t => t.children).flat()
+                    })}
+                    key={"Merged"}
+                />
                 {data.threads.sort((a,b) => b.time - a.time).map(thread => (
                     <BaseNode
                         parents={[]}
