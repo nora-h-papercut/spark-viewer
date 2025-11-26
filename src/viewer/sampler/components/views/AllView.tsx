@@ -25,7 +25,7 @@ export default function AllView({ data, setLabelMode }: AllViewProps) {
             </AllViewHeader>
             <hr />
             <div className="stack">
-                {data.threads.map(thread => (
+                {data.threads.sort((a,b) => b.time - a.time).map(thread => (
                     <BaseNode
                         parents={[]}
                         node={new BasicVirtualNode(data, thread)}
